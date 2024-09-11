@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 100%;
+    height: 300px;
+    display: flex;
+}
+
+.first{
+    background-color: green;
+    height: 100%;
+    flex: 1;
+}
+
+.second{
+    background-color: yellow;
+    height: 100%;
+    flex: 2;
+}
+
+.third{
+    background-color: purple;
+    height: 100%;
+    flex: 1;
+}

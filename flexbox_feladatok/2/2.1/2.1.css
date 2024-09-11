@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 800px;
+    height: 300px;
+    background: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.green, .yellow, .purple{
+    width: 100px;
+    height: 100px;
+}
+
+.purple{
+    background-color: purple;
+    position: absolute;
+}
+
+.green{
+    background-color: green;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+.green, .yellow{
+    opacity: 0;
+}
