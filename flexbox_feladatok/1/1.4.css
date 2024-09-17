@@ -3,14 +3,14 @@
     padding: 0;
 }
 
-.container{
+.container4{
     width: 600px;
     height: 500px;
     display: flex;
     flex-direction: column;
 }
 
-.first{
+.first4{
     background-color: green;
     height: 100%;
     width: 100%;
@@ -18,7 +18,7 @@
     order: 1;
 }
 
-.second{
+.second4{
     background-color: yellow;
     height: 100%;
     width: 100%;
@@ -26,7 +26,7 @@
     order: 3;
 }
 
-.third{
+.third4{
     background-color: purple;
     height: 100%;
     width: 100%;

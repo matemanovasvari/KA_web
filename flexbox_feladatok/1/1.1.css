@@ -3,25 +3,25 @@
     padding: 0;
 }
 
-.container{
+.container1{
     width: 100%;
     height: 300px;
     display: flex;
 }
 
-.first{
+.first1{
     background-color: green;
     height: 100%;
     flex: 1;
 }
 
-.second{
+.second1{
     background-color: yellow;
     height: 100%;
     flex: 1;
 }
 
-.third{
+.third1{
     background-color: purple;
     height: 100%;
     flex: 1;

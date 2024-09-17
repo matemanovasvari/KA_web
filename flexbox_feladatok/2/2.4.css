@@ -3,24 +3,24 @@
     padding: 0;
 }
 
-.container{
+.container4{
     width: 100%;
     height: 400px;
     background-color: yellow;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
 }
 
-ul{
+.ul2{
     width: 100%;
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
-li{
+.li2{
     width: 100px;
     height: 100px;
     background-color: purple;
+    margin-left: 5px;
 }
