@@ -89,7 +89,7 @@ function startsWithEven(text){
 }
 
 function startsWithNumber(text){
-    regex = /\b\d\w*\b/g;
+    regex = /\b\d+[a-zA-Z]+\b/g;
     return text.match(regex);
 }
 
@@ -99,4 +99,19 @@ function capitalized(text){
     return text.match(regex)
 }
 
+function capitalizedLengthMin3(text){
+    regex = /\b[A-Z][a-z]{2,}\b/g;
+    return text.match(regex)
+}
+
+function startsWithVowel(text){
+    regex = /\b[a,e,i,o,u]\w*\b/g;
+    return text.match(regex)
+}
+
+console.log(numberLenght2Or3(text));
+console.log(startsWithEven(text));
+console.log(startsWithNumber(text));
 console.log(capitalized(text));
+console.log(capitalizedLengthMin3(text));
+console.log(startsWithVowel(text));
