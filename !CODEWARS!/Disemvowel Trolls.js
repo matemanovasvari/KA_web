@@ -1,12 +1,5 @@
 function disemvowel(str) {
-    for(let i = 0; i < str.lenght; i++){
-        if(str[i] == ["u","i","a","e","o","U","I","A","E","O"]){
-            str[i].replaceAll("");
-        }
-        else{
-            str.replaceAll(str[i]);
-        }
-    }
-    return str;
+    return str.replaceAll('a','').replaceAll('i','').replaceAll('e','').replaceAll('o','').replaceAll('u','')
+    .replaceAll('A','').replaceAll('I','').replaceAll('E','').replaceAll('O','').replaceAll('U','');
 }
 console.log(disemvowel("This website is for losers LOL!"))
