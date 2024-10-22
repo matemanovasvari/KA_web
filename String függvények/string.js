@@ -6,10 +6,10 @@ console.log(text.charAt(2));
 console.log(text.at(-3));
 
 //slice, substring, substr
-console.log(text.slice(2, 9));
 console.log(text.substring(2, 10));
 
 console.log(text.substring(10));
+console.log(text.slice(2, 9));
 console.log(text.slice(-8));
 
 console.log(text.substr(2, 8));
