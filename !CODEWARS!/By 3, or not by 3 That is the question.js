@@ -1,14 +1,16 @@
-function divisibleByThree(str){
+function divisibleByThree(str) {
     let sum = 0;
-    
-    for(let i = 0; i < str.lenght; i++){
+
+    for (let i = 0; i < str.length; i++) {
         sum += parseInt(str[i]);
     }
 
-    if(Number.isInteger(sum / 3)){
+    if (Number.isInteger(sum / 3)) {
         return true;
     }
-    else{
-        return false;
-    }
+
+    return false;
 }
+
+console.log(divisibleByThree("125421"));
+console.log(divisibleByThree("124"));

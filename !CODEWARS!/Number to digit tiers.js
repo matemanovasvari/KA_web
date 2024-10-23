@@ -8,3 +8,5 @@ function createArrayOfTiers(num) {
 
     return results;
 }
+
+console.log(createArrayOfTiers(420));

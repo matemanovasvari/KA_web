@@ -9,3 +9,5 @@ function stringClean(str){
 
     return result;
 }
+
+console.log(stringClean("St432ri43231ng cle3423a143ni5434ng!"));

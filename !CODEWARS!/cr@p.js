@@ -5,6 +5,7 @@ function crap(x, bags, cap){
     for (let i = 0; i < x.length; i++) {
 
         for (let j = 0; j < x[i].length; j++) {
+
             if (x[i][j] === "@") {
                 numberofcrap++;
             }
@@ -20,3 +21,7 @@ function crap(x, bags, cap){
     
     return "Clean";
 }
+
+console.log(crap([['_','@','_','_'],
+                  ['_','_','_','@'],
+                  ['_','_','@','_']], 3, 2))
