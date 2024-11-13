@@ -20,61 +20,88 @@ initializeGame();
 function initializeGame(){
     cells.forEach(cell => cell.addEventListener("click", cellClicked));
     restartBtn.addEventListener("click", restartGame);
+    vsComputerToggle.addEventListener("change", toggleVsComputer);
     statusText.textContent = `${currentPlayer}'s turn`;
     running = true;
 }
+
+function toggleVsComputer() {
+    vsComputer = vsComputerToggle.checked;
+    restartGame();
+}
+
 function cellClicked(){
     const cellIndex = this.getAttribute("cellIndex");
 
-    if(options[cellIndex] != "" || !running){
+    if(options[cellIndex] != "" || !running || (vsComputer && currentPlayer === "O")){
         return;
     }
 
     updateCell(this, cellIndex);
     checkWinner();
+
+    if (running && vsComputer && currentPlayer === "O") {
+        setTimeout(computerMove, 500);
+    }
 }
+
 function updateCell(cell, index){
     options[index] = currentPlayer;
     cell.textContent = currentPlayer;
 }
+
 function changePlayer(){
     currentPlayer = (currentPlayer == "X") ? "O" : "X";
     statusText.textContent = `${currentPlayer}'s turn`;
 }
-function checkWinner(){
+
+function checkWinner() {
     let roundWon = false;
 
-    for(let i = 0; i < winConditions.length; i++){
+    for (let i = 0; i < winConditions.length; i++) {
         const condition = winConditions[i];
         const cellA = options[condition[0]];
         const cellB = options[condition[1]];
         const cellC = options[condition[2]];
 
-        if(cellA == "" || cellB == "" || cellC == ""){
+        if (cellA === "" || cellB === "" || cellC === "") {
             continue;
         }
-        if(cellA == cellB && cellB == cellC){
+        if (cellA === cellB && cellB === cellC) {
             roundWon = true;
             break;
         }
     }
 
-    if(roundWon){
+    if (roundWon) {
         statusText.textContent = `${currentPlayer} wins!`;
         running = false;
-    }
-    else if(!options.includes("")){
+    } else if (!options.includes("")) {
         statusText.textContent = `Draw!`;
         running = false;
-    }
-    else{
+    } else {
         changePlayer();
     }
 }
+
 function restartGame(){
     currentPlayer = "X";
     options = ["", "", "", "", "", "", "", "", ""];
     statusText.textContent = `${currentPlayer}'s turn`;
     cells.forEach(cell => cell.textContent = "");
     running = true;
+}
+
+function computerMove() {
+    let availableCells = [];
+    options.forEach((option, index) => {
+        if (option === "") availableCells.push(index);
+    });
+
+    if (availableCells.length > 0) {
+        const randomIndex = availableCells[Math.floor(Math.random() * availableCells.length)];
+        const cell = document.querySelector(`.cell[cellIndex="${randomIndex}"]`);
+        updateCell(cell, randomIndex);
+        checkWinner();
+    }
 }
