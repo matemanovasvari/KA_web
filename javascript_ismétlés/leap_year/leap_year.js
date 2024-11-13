@@ -3,7 +3,7 @@ function Check(){
 
     var isLeapYear = false;
 
-    if(yearToCheck % 4 == 0){
+    if((yearToCheck % 400 == 0) || (yearToCheck % 4 == 0 && yearToCheck % 100 != 0)){
         isLeapYear = true;
     }
     else{
