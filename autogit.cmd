@@ -4,7 +4,7 @@ pushd "%~dp0"
 :begin
 set /p selection="1. Push vagy 2. Pull > "
 
-if /i %selection%=="push" or %selection%=="pus" or %selection%=="1" (
+if %selection%==1 (
     git add .
     git status
     echo.
@@ -12,12 +12,10 @@ if /i %selection%=="push" or %selection%=="pus" or %selection%=="1" (
     git commit -m "%date% - %commit%"
     git push
     goto :end
-)
-else if /i %selection%=="pull" or %selection%=="pul" or %selection%=="2" (
+) else if %selection%==2 (
     git pull
     goto :end
-)
-else (
+) else (
     echo Hibás választás!
     goto :begin
 )
