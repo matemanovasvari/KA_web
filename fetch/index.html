@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User search</title>
+</head>
+<body>
+    <div>
+        <div>
+            <label for="userID">Type in the person's id</label>
+            <input type="number" min="0" max="30" id="userID" name="userID">
+            <button onclick="search()">Search</button>
+        </div>
+        <div">
+            <p id="id"></p>
+            <p id="name"></p>
+            <p id="phone"></p>
+            <p id="email"></p>
+            <p id="address"></p>
+            <p id="geo"></p>
+            <p id="compdat"></p>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
