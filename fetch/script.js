@@ -1,5 +1,5 @@
 function fetching(id){
-    fetch(`https://jsonplaceholder.org/users/?id=${id}`)
+    fetch(`https://jsonplaceholder.org/users/id=${id}`)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
