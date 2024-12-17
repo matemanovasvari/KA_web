@@ -1,0 +1,15 @@
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input{
+    border-radius: 25px;
+    border: 1px solid black;
+    width: 250px;
+    height: 25px;
+    padding: 0 10px;
+}
+
+label{
+    font-size: larger;
+}
