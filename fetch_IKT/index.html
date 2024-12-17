@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Codewars users fetch</title>
+    <title>User Search</title>
 </head>
 <body>
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username">
+    <div class="container">
+        <h1>User Search</h1>
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username..." />
+            <button onclick="searchUser()">Search</button>
+        </div>
+
+        <button class="toggle-btn" onclick="toggleMode()">Dark/Light</button>
+
+        <div id="user-card" class="card" style="display:none;">
+            <p><strong>Username:</strong> <span id="username-display"></span></p>
+            <p><strong>Name:</strong> <span id="name"></span></p>
+            <p><strong>Clan:</strong> <span id="clan"></span></p>
+            <p><strong>Languages:</strong></p>
+            <ul id="languages"></ul>
+        </div>
+
+        <button class="clear-btn" onclick="clearData()">Clear user</button>
     </div>
 </body>
 <script src="script.js"></script>
