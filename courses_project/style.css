@@ -30,6 +30,13 @@ h1 {
     color: #5f6368;
 }
 
+h2 {
+    text-align: center;
+    color: #5f6368;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
 button {
     display: block;
     width: 100%;
@@ -49,6 +56,19 @@ button:hover {
     transform: scale(1.05);
 }
 
-#viewCoursesPage{
-    visibility: hidden;
+#viewCoursesPage, #viewStudentsPage, #addNewCoursePage, #addNewStudentPage, #modifyCoursePage, #modifyStudentPage, #deleteCoursePage, #deleteStudentPage{
+    display: none;
+}
+#backToHomeBtn {
+    width: 50px; /* Fixed width for the button */
+    height: 50px; /* Make sure the height is also set */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 10px;
+    border-radius: 50%; /* Circular button */
+    border: none; /* Optional: remove the border */
 }

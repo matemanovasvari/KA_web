@@ -4,24 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Courses Project</title>
+    <title>Courses and Students Manager</title>
 </head>
 <body>
     <div id="mainPage">
         <h1>Choose from the options below:</h1>
         <button onclick="coursesPage()">View courses</button>
-        <button>View students</button>
-        <button>Add new course</button>
-        <button>Add new student</button>
-        <button>Modify course</button>
-        <button>Modify student</button>
-        <button>Delete course</button>
-        <button>Delete student</button>
+        <button onclick="studentsPage()">View students</button>
+        <button onclick="addCoursePage()">Add new course</button>
+        <button onclick="addStudentPage()">Add new student</button>
+        <button onclick="modifyCoursePage()">Modify course</button>
+        <button onclick="modifyStudentPage()">Modify student</button>
+        <button onclick="deleteCoursePage()">Delete course</button>
+        <button onclick="deleteStudentPage()">Delete student</button>
     </div>
 
-    <div id="viewCoursesPage">
-        <button onclick="backToMainPage()"></button>
+    <div id="viewCoursesPage" style="display: none;">
+        <h2>Courses</h2>
+        <div id="coursesList"></div>
+        <button onclick="backToMainPage()" id="backToHomeBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
     </div>
+
+    <div id="viewStudentsPage" style="display: none;">
+        <h2>Students</h2>
+        <ul id="studentsList"></ul>
+        <button onclick="backToMainPage()" id="backToHomeBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
+    </div>
+
+    <div id="addNewCoursePage" style="display: none;">
+        <h2>Add New Course</h2>
+        <form onsubmit="addCourse(event)">
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName" required>
+            <button type="submit">Add Course</button>
+        </form>
+        <button onclick="backToMainPage()" id="backToHomeBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
+    </div>
+
+    <div id="addNewStudentPage" style="display: none;">
+        <h2>Add New Student</h2>
+        <form onsubmit="addStudent(event)">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" required>
+            <button type="submit">Add Student</button>
+        </form>
+        <button onclick="backToMainPage()" id="backToHomeBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
+    </div>
+
+    <div id="modifyCoursePage" style="display: none;">
+        <h2>Modify Course</h2>
+        <form onsubmit="modifyCourse(event)">
+            <label for="courseId">Course ID:</label>
+            <input type="text" id="courseId" required>
+            <label for="newCourseName">New Course Name:</label>
+            <input type="text" id="newCourseName" required>
+            <button type="submit">Modify Course</button>
+        </form>
+        <button onclick="backToMainPage()" id="backToHomeBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
+    </div>
+
+    <div id="modifyStudentPage" style="display: none;">
+        <h2>Modify Student</h2>
+        <form onsubmit="modifyStudent(event)">
+            <label for="studentId">Student ID:</label>
+            <input type="text" id="studentId" required>
+            <label for="newStudentName">New Student Name:</label>
+            <input type="text" id="newStudentName" required>
+            <button type="submit">Modify Student</button>
+        </form>
+        <button onclick="backToMainPage()" id="backToHomeBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
+    </div>
+
+    <div id="deleteCoursePage" style="display: none;">
+        <h2>Delete Course</h2>
+        <form onsubmit="deleteCourse(event)">
+            <label for="deleteCourseId">Course ID:</label>
+            <input type="text" id="deleteCourseId" required>
+            <button type="submit">Delete Course</button>
+        </form>
+        <button onclick="backToMainPage()" id="backToHomeBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
+    </div>
+
+    <div id="deleteStudentPage" style="display: none;">
+        <h2>Delete Student</h2>
+        <form onsubmit="deleteStudent(event)">
+            <label for="deleteStudentId">Student ID:</label>
+            <input type="text" id="deleteStudentId" required>
+            <button type="submit">Delete Student</button>
+        </form>
+        <button onclick="backToMainPage()" id="backToHomeBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
