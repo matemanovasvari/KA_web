@@ -54,7 +54,7 @@ function backToMainPage() {
     document.getElementById("deleteStudentPage").style.display = "none";
 }
 
-function getCourses() {
+function getCourses(){
     fetch(`https://vvri.pythonanywhere.com/api/courses`, {
         method: "GET"
     })
@@ -121,51 +121,51 @@ function getCourses() {
         });
 }
 
-function getStudents() {
+function getStudents(){
     fetch(`https://vvri.pythonanywhere.com/api/students`, {
         method: "GET"
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then(json => {
-            const studentsList = document.getElementById("studentsList");
-            studentsList.innerHTML = '';
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    })
+    .then(json => {
+        const studentsList = document.getElementById("studentsList");
+        studentsList.innerHTML = '';
 
-            if (json.length === 0) {
-                const noStudentsMessage = document.createElement('p');
-                noStudentsMessage.textContent = 'No students available.';
-                studentsList.appendChild(noStudentsMessage);
-                return;
-            }
+        if (json.length === 0) {
+            const noStudentsMessage = document.createElement('p');
+            noStudentsMessage.textContent = 'No students available.';
+            studentsList.appendChild(noStudentsMessage);
+            return;
+        }
 
-            json.forEach(student => {
-                const studentContainer = document.createElement('div');
-                studentContainer.style.width = '30%';
-                studentContainer.style.border = '1px solid #ccc';
-                studentContainer.style.padding = '10px';
-                studentContainer.style.borderRadius = '5px';
-                studentContainer.style.flex = '0 1 calc(25% - 20px)'
+        json.forEach(student => {
+            const studentContainer = document.createElement('div');
+            studentContainer.style.width = '30%';
+            studentContainer.style.border = '1px solid #ccc';
+            studentContainer.style.padding = '10px';
+            studentContainer.style.borderRadius = '5px';
+            studentContainer.style.flex = '0 1 calc(25% - 20px)'
 
-                studentContainer.innerHTML = `
-                    <p><strong>Student ID:</strong> ${student.id}</p>
-                    <p><strong>Student Name:</strong> ${student.name}</p>
-                `;
+            studentContainer.innerHTML = `
+                <p><strong>Student ID:</strong> ${student.id}</p>
+                <p><strong>Student Name:</strong> ${student.name}</p>
+            `;
 
-                studentsList.appendChild(studentContainer);
-            });
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-            const studentsList = document.getElementById("studentsList");
-            studentsList.innerHTML = '<p>Failed to load courses. Please try again later.</p>';
+            studentsList.appendChild(studentContainer);
         });
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        const studentsList = document.getElementById("studentsList");
+        studentsList.innerHTML = '<p>Failed to load courses. Please try again later.</p>';
+    });
 }
 
-function addCourse(event) {
+function addCourse(event){
     event.preventDefault();
 
     const courseName = document.getElementById("courseName").value;
@@ -201,7 +201,7 @@ function addCourse(event) {
     });
 }
 
-function addStudent(event) {
+function addStudent(event){
     event.preventDefault();
 
     const studentName = document.getElementById("studentName").value;
@@ -237,5 +237,39 @@ function addStudent(event) {
     .catch(error => {
         console.error("Error adding student:", error);
         alert("Error adding student. Please try again.");
+    });
+}
+
+function modifyCourse(event){
+    event.preventDefault();
+
+    const course_id = document.getElementById("courseId").value;
+    const id = parseInt(course_id, 10)
+    const newCourseName = document.getElementById("newCourseName").value;
+
+    fetch(`https://vvri.pythonanywhere.com/api/courses/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+            name: newCourseName
+        }),
+        headers: {
+        "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to modify course. Please try again.");
+        }
+        return response.json();
+    })
+    .then(json => {
+        console.log("Course modified successfully:", json);
+        alert("Course modified successfully!");
+        document.getElementById("courseId").value = "";
+        document.getElementById("newCourseName").value = "";
+    })
+    .catch(error => {
+        console.error("Error modifying course:", error);
+        alert("Error modifying course. Please try again.");
     });
 }
