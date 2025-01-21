@@ -244,16 +244,15 @@ function modifyCourse(event){
     event.preventDefault();
 
     const course_id = document.getElementById("courseId").value;
-    const id = parseInt(course_id, 10)
     const newCourseName = document.getElementById("newCourseName").value;
 
-    fetch(`https://vvri.pythonanywhere.com/api/courses/${id}`, {
+    fetch(`https://vvri.pythonanywhere.com/api/courses/${course_id}`, {
         method: "PATCH",
         body: JSON.stringify({
             name: newCourseName
         }),
         headers: {
-        "Content-type": "application/json; charset=UTF-8"
+            "Content-type": "application/json; charset=UTF-8"
         }
     })
     .then(response => {
@@ -271,5 +270,89 @@ function modifyCourse(event){
     .catch(error => {
         console.error("Error modifying course:", error);
         alert("Error modifying course. Please try again.");
+    });
+}
+
+function modifyStudent(event){
+    event.preventDefault();
+
+    const studentId = document.getElementById("studentId").value;
+    const course_id = document.getElementById("courseId").value;
+    const newStudentName = document.getElementById("newStudentName").value;
+
+    fetch(`https://vvri.pythonanywhere.com/api/students/${studentId}`, {
+        method: "PUT",
+        body: JSON.stringify({
+            name: newStudentName,
+            course_id: course_id
+        }),
+        headers: {
+        "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to modify student. Please try again.");
+        }
+        return response.json();
+    })
+    .then(json => {
+        console.log("Student modified successfully:", json);
+        alert("Student modified successfully!");
+        document.getElementById("studentId").value = "";
+        document.getElementById("courseId").value = null;
+        document.getElementById("newStudentName").value = "";
+    })
+    .catch(error => {
+        console.error("Error modifying student:", error);
+        alert("Error modifying student. Please try again.");
+    });
+}
+
+function deleteCourse(event) {
+    event.preventDefault();
+
+    const id = document.getElementById("deleteCourseId").value;
+
+    fetch(`https://vvri.pythonanywhere.com/api/courses/${id}`, {
+        method: "DELETE"
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to delete the course. Please try again.");
+        }
+    })
+    .then(json => {
+        console.log("Course deleted successfully:", json);
+        alert("Course deleted successfully!");
+        document.getElementById("deleteCourseId").value = "";
+    })
+    .catch(error => {
+        console.error("Error deleting course:", error);
+        alert("Error deleting course. Please try again.");
+    });
+}
+
+function deleteStudent(event) {
+    event.preventDefault();
+
+    const id = document.getElementById("deleteStudentId").value;
+
+    fetch(`https://vvri.pythonanywhere.com/api/students/${id}`, {
+        method: "DELETE"
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to delete the student. Please try again.");
+        }
+    })
+    .then(json => {
+        console.log("Student deleted successfully:", json);
+        alert("Student deleted successfully!");
+        document.getElementById("deleteStudentId").value = "";
+    })
+    .catch(error => {
+        console.error("Error deleting student:", error);
+        alert("Error deleting student. Please try again.");
     });
 }
