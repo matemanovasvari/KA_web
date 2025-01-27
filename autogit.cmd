@@ -1,17 +1,22 @@
 @echo off
 title Auto Git
 pushd "%~dp0"
+
+net file 1>nul 2>nul
+if %errorlevel%==0 (
+    goto :begin
+) else (
+    powershell.exe Start-Process '%~0' -verb runas
+    exit /b %errorlevel%
+)
+
 :begin
 set /p selection="1. Push vagy 2. Pull > "
 
 if %selection%==1 (
     git add .
     git status
-    echo.
-    set /p commit="Add meg a commit messaget > "
-    git commit -m "%date% - %commit%"
-    git push
-    goto :end
+    goto :push
 ) else if %selection%==2 (
     git pull
     goto :end
@@ -20,7 +25,12 @@ if %selection%==1 (
     goto :begin
 )
 
+:push
+set /p commitmessage="Commit message: "
+git commit -m "%date% - %commitmessage%"
+git push
+
 :end
 net helpmsg %errorlevel%
 timeout 5 /nobreak > nul
-exit /b %errorlevel%
+exit /b %errorlevel%githju
