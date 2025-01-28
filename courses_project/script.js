@@ -259,7 +259,6 @@ function modifyCourse(event){
         if (!response.ok) {
             throw new Error("Failed to modify course. Please try again.");
         }
-        return response.json();
     })
     .then(json => {
         console.log("Course modified successfully:", json);
@@ -294,7 +293,6 @@ function modifyStudent(event){
         if (!response.ok) {
             throw new Error("Failed to modify student. Please try again.");
         }
-        return response.json();
     })
     .then(json => {
         console.log("Student modified successfully:", json);
