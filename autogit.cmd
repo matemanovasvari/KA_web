@@ -2,14 +2,6 @@
 title Auto Git
 pushd "%~dp0"
 
-net file 1>nul 2>nul
-if %errorlevel%==0 (
-    goto :begin
-) else (
-    powershell.exe Start-Process '%~0' -verb runas
-    exit /b %errorlevel%
-)
-
 :begin
 set /p selection="1. Push vagy 2. Pull > "
 
@@ -32,5 +24,5 @@ git push
 
 :end
 net helpmsg %errorlevel%
-timeout 5 /nobreak > nul
+timeout 2 /nobreak > nul
 exit /b %errorlevel%githju
