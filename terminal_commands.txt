@@ -1,0 +1,4 @@
+npm init -y
+npm i express
+npm i nodemon --save-dev
+npm run dev
