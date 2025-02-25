@@ -1,0 +1,5 @@
+[
+    { "manufacturer": "Suzuki", "model": "Swift", "releaseYear": 2017 },
+    { "manufacturer": "Toyota", "model": "Supra", "releaseYear": 1997 },
+    { "manufacturer": "Chevrolet", "model": "Impala", "releaseYear": 1967 }
+]
