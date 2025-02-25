@@ -1,0 +1,21 @@
+{
+  "name": "orai-02-18-feladat-2",
+  "version": "1.0.0",
+  "main": "users.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node users.js",
+    "dev":"nodemon users.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
