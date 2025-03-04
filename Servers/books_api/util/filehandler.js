@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import __dirname from "./rootpath.js";
 
-const filePath = path.join(__dirname, "data", "cars.json");
+const filePath = path.join(__dirname, "data", "books.json");
 
 export const getData = () => {
     try {
