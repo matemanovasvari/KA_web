@@ -3,7 +3,7 @@ title Auto Git
 pushd "%~dp0"
 
 :begin
-set /p selection="1. Push vagy 2. Pull > "
+set /p selection="1. Push or 2. Pull > "
 
 if %selection%==1 (
     git add .
@@ -13,7 +13,7 @@ if %selection%==1 (
     git pull
     goto :end
 ) else (
-    echo Hibás választás!
+    echo Wrong choice!
     goto :begin
 )
 
