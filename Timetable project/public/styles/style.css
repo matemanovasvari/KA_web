@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    margin: 25px;
+    text-align: center;
+}
+
+button{
+    font-size: larger;
+    height: 50px;
+    width: 110px;
+    border-radius: 10px;
+}
+
+.container{
+    display: flex;
+    justify-self: center;
+}
+
+tr, td, th{
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid black;
+}
+
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.classNumberCounter{
+    width: 130px;
+    height: 70px;
+    text-align: center;
+}
+
+.cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

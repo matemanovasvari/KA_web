@@ -42,15 +42,7 @@ export function dbRun(sql, params = []){
 }
 
 export async function initializeDatabase() {
-    await dbRun("DROP TABLE IF EXISTS users;");
-    await dbRun("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING, age INTEGER);")
-
-    const users = [
-        {name:"Atos",age:"19"},
-        {name:"Béla",age:"20"}
-    ]
-
-    for(const user of users){
-        await dbRun("INSERT INTO users (name, age) VALUES (?, ?);", [user.name, user.age]);
-    }
+    await dbRun(
+        "CREATE TABLE IF NOT EXISTS classes (id INTEGER PRIMARY KEY AUTOINCREMENT, day STRING, period INTEGER, class_name STRING, teacher STRING, room STRING);"
+    );
 }

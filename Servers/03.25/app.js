@@ -5,10 +5,6 @@ const port = 3000;
 const app = express();
 app.use(express.json());
 
-app.listen(3000, () => {
-    console.log(`Server running on ${port}`);
-})
-
 app.get('/users', async (req, res) => {
     const users = await dbAll("SELECT * FROM users");
     res.status(200).json(users);
