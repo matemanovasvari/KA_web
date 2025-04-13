@@ -39,6 +39,27 @@ app.get("/classes/:id", async (req, res) => {
   res.status(200).json(_class);
 });
 
+app.get("/classes/by-slot", async (req, res) => {
+  const { day, period } = req.query;
+
+  console.log("Received day:", day, "period:", period);
+
+  if (!day || !period) {
+    return res.status(400).json({ message: "Missing day or period" });
+  }
+
+  const _class = await dbGet(
+    "SELECT * FROM classes WHERE day = ? AND period = ?",
+    [day, period]
+  );
+
+  if (!_class) {
+    return res.status(404).json({ message: "Class not found" });
+  }
+
+  res.status(200).json(_class);
+});
+
 app.post("/classes", async (req, res) => {
   const { day, period, class_name, teacher, room } = req.body;
 
