@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: none;
+    color: white;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(../styles/ChatGPT\ Image\ 2025.\ ápr.\ 14.\ 18_26_18.png);
+}
+
+.cursor-dot{
+    width: 25px;
+    height: 25px;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    pointer-events: none;
+    border: 3px solid grey;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menuBtn{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.menuBtn:hover{
+    background: #fff;
+    color: black;
+}
+
+.wrapper{
+    border: 1px solid #fff;
+}
+
+input{
+    background: #1b1b1f;
+}
