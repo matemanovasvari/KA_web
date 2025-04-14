@@ -22,6 +22,17 @@ app.get("/add-class", (req, res) => {
   res.sendFile("./public/htmls/add-class.html", { root: __dirname });
 });
 
+app.get("/edit-class/:id", async (req, res) => {
+  const classId = req.params.id;
+  const _class = await dbGet("SELECT * FROM classes WHERE id = ?", [classId]);
+
+  if (!_class) {
+    return res.status(404).json({ message: "Class not found" });
+  }
+
+  res.sendFile("./public/htmls/edit-class.html", { root: __dirname });
+});
+
 app.get("/classes", async (req, res) => {
   const classes = await dbAll("SELECT * FROM classes");
   res.status(200).json(classes);
@@ -39,27 +50,6 @@ app.get("/classes/:id", async (req, res) => {
   res.status(200).json(_class);
 });
 
-app.get("/classes/by-slot", async (req, res) => {
-  const { day, period } = req.query;
-
-  console.log("Received day:", day, "period:", period);
-
-  if (!day || !period) {
-    return res.status(400).json({ message: "Missing day or period" });
-  }
-
-  const _class = await dbGet(
-    "SELECT * FROM classes WHERE day = ? AND period = ?",
-    [day, period]
-  );
-
-  if (!_class) {
-    return res.status(404).json({ message: "Class not found" });
-  }
-
-  res.status(200).json(_class);
-});
-
 app.post("/classes", async (req, res) => {
   const { day, period, class_name, teacher, room } = req.body;
 
@@ -68,6 +58,16 @@ app.post("/classes", async (req, res) => {
   }
 
   try {
+    const existing = await dbGet(
+      "SELECT * FROM classes WHERE day = ? AND period = ?",
+      [day, period]
+    );
+    if (existing) {
+      return res
+        .status(409)
+        .json({ message: "Class already exists for this slot" });
+    }
+
     const result = await dbRun(
       `INSERT INTO classes (day, period, class_name, teacher, room) VALUES (?, ?, ?, ?, ?);`,
       [day, period, class_name, teacher, room]
@@ -92,17 +92,31 @@ app.put("/classes/:id", async (req, res) => {
   }
 
   const { day, period, class_name, teacher, room } = req.body;
-  if (!day || !period || !class_name || !teacher || !room) {
-    return res.status(404).json({ message: "Missing data!" });
+
+  if (
+    day == null ||
+    period == null ||
+    class_name == null ||
+    teacher == null ||
+    room == null
+  ) {
+    return res.status(400).json({ message: "Missing data!" });
   }
-  dbRun("UPDATE classes SET day = ?, period = ?, class_name = ?, teacher = ?, room = ? WHERE id = ?", [
+
+  await dbRun(
+    "UPDATE classes SET day = ?, period = ?, class_name = ?, teacher = ?, room = ? WHERE id = ?",
+    [day, period, class_name, teacher, room, id]
+  );
+
+  res.status(200).json({
+    message: "Class updated successfully",
+    id,
     day,
     period,
     class_name,
     teacher,
     room,
-  ]);
-  res.status(200).json(_class);
+  });
 });
 
 app.delete("/classes/:id", async (req, res) => {
@@ -124,11 +138,10 @@ async function startServer() {
   });
 }
 
-//HAS TO BE LAST
 app.use((err, req, res, next) => {
-    if(err){
-        res.status(500).json({message:err})
-    }
+  if (err) {
+    res.status(500).json({ message: err });
+  }
 });
 
 startServer();
