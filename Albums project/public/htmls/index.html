@@ -12,12 +12,11 @@
     <header>
         <img src="../styles/ChatGPT Image 2025. ápr. 14. 17_53_12.png" class="logo">
         <nav class="navigation">
-            <button class="menuBtn">Add album</button>
+            <button class="menuBtn" onclick="openAddAlbumForm()">Add album</button>
             <button class="menuBtn">List albums</button>
             <button class="menuBtn">Display album</button>
         </nav>
     </header>
-    <div class="wrapper">
         <div class="form-box add-album">
             <h2>Add album</h2>
             <form onsubmit="return false;">
@@ -36,7 +35,6 @@
             </form>
             <button id="saveBtn">Save album</button>
         </div>
-    </div>
     <script src="../script.js"></script>
 </body>
 </html>

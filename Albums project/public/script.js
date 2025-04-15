@@ -11,3 +11,12 @@ window.addEventListener("mousemove", function(e){
 const currentYear = new Date().getFullYear();
 
 document.getElementById("releaseYear").setAttribute("max", currentYear);
+
+function openAddAlbumForm(){
+    document.getElementsByClassName("add-album")[0].style.display = "flex";
+    for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+        
+    }
+    document.getElementsByClassName("add-album")[0].style.transform = "scale(100%)";
+}
