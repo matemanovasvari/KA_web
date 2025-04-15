@@ -65,9 +65,37 @@ header{
 }
 
 .wrapper{
-    border: 1px solid #fff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    width: 350px;
+    height: 400px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 input{
-    background: #1b1b1f;
+    background: #2e2e31;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: 250px;
+    height: 25px;
+}
+
+h2{
+    text-align: center;
+}
+
+.add-album h2{
+    margin: 15px 0;
+    font-size: 200%;
+}
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 55px;
+}
+
+label{
+    font-size: large;
 }
