@@ -64,7 +64,7 @@ header{
     color: black;
 }
 
-.wrapper{
+.form-box{
     border: 1px solid rgba(255, 255, 255, 0.6);
     width: 350px;
     height: 400px;
@@ -86,8 +86,8 @@ h2{
 }
 
 .add-album h2{
-    margin: 15px 0;
     font-size: 200%;
+    margin-top: 15px;
 }
 
 .input-box{
@@ -96,6 +96,45 @@ h2{
     margin: 30px 55px;
 }
 
+.input-box-flex{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 55px;
+    align-items: center;
+}
+
 label{
     font-size: large;
+}
+
+#releaseYear{
+    width: 100px;
+}
+
+button{
+    background: #1b1b1f;
+}
+
+.add-album{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#saveBtn{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    transition: .5s;   
+}
+
+#saveBtn:hover{
+    background: #fff;
+    color: black;   
 }
