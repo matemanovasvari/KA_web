@@ -12,29 +12,50 @@
     <header>
         <img src="../styles/ChatGPT Image 2025. ápr. 14. 17_53_12.png" class="logo">
         <nav class="navigation">
-            <button class="menuBtn" onclick="openAddAlbumForm()">Add album</button>
+            <button class="menuBtn" id="open_add_album_tab">Add album</button>
             <button class="menuBtn">List albums</button>
-            <button class="menuBtn">Display album</button>
+            <button class="menuBtn" id="open_display_album">Display album</button>
         </nav>
     </header>
-        <div class="form-box add-album">
-            <h2>Add album</h2>
-            <form onsubmit="return false;">
-                <div class="input-box">
-                    <label>Band/Singer</label>
-                    <input type="text" required>
-                </div>
-                <div class="input-box">
-                    <label>Album title</label>
-                    <input type="text" required>
-                </div>
-                <div class="input-box-flex">
-                    <label>Release year</label> 
-                    <input type="number" min="1800" max="" id="releaseYear" required>
-                </div>
-            </form>
-            <button id="saveBtn">Save album</button>
-        </div>
+    <div class="form-box add-album">
+        <button id="close_add_album_tab">X</button>
+        <h2>Add album</h2>
+        <form onsubmit="return false;">
+            <div class="input-box">
+                <label>Band/Singer</label>
+                <input id="singerInput" type="text" oninvalid="setCustomValidity('Enter the band/singer')" oninput="setCustomValidity('')" required>
+            </div>
+            <div class="input-box">
+                <label>Album title</label>
+                <input id="titleInput" type="text" oninvalid="setCustomValidity(`Enter the album's title`)" oninput="setCustomValidity('')" required>
+            </div>
+            <div class="input-box-flex">
+                <label>Release year</label> 
+                <input type="number" min="1960" max="" id="releaseYear" placeholder="1960" oninvalid="setCustomValidity('Enter the release year')" oninput="setCustomValidity('')" required>
+            </div>
+            <div class="input-box-flex">
+                <label>Number of songs in the album</label> 
+                <input type="number" min="1" id="songAmount" placeholder="1" oninvalid="setCustomValidity('Enter the number of songs on the album')" oninput="setCustomValidity('')" required>
+            </div>
+            <div id="save_btn_container">
+                <button id="saveBtn" type="submit">Save album</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-box display-album">
+        <button id="close_display_album_tab">X</button>
+        <h2>Display album</h2>
+        <form onsubmit="return false;">
+            <div class="input-box-flex">
+                <label>Id of album to display</label> 
+                <input type="number" min="1" id="albumId" placeholder="1" required>
+            </div>
+            <div id="save_btn_container">
+                <button id="submitBtn" type="submit">Select album</button>
+            </div>
+        </form>
+    </div>
     <script src="../script.js"></script>
 </body>
 </html>
