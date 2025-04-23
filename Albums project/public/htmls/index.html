@@ -19,7 +19,7 @@
     </header>
     <div class="form-box add-album">
         <button id="close_add_album_tab">X</button>
-        <h2>Add album</h2>
+        <h2 id="addTitle">Add album</h2>
         <form onsubmit="return false;">
             <div class="input-box">
                 <label>Band/Singer</label>
@@ -55,6 +55,9 @@
                 <button id="submitBtn" type="submit">Select album</button>
             </div>
         </form>
+        <br>
+        <br>
+        <div id="albumDisplay" class="album-display"></div>
     </div>
     <script src="../script.js"></script>
 </body>

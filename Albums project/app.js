@@ -88,7 +88,7 @@ app.put("/albums/:id", async (req, res) => {
   }
 
   await dbRun(
-    "UPDATE classes SET singer = ?, title = ?, release_year = ?, song_amount = ? WHERE id = ?",
+    "UPDATE albums SET singer = ?, title = ?, release_year = ?, song_amount = ? WHERE id = ?",
     [singer, title, release_year, song_amount, id]
   );
 
