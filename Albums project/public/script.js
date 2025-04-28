@@ -22,6 +22,10 @@ document
     formToClose.style.display = "none";
     formToClose.classList.remove("active");
 
+    const formToClose2 = document.getElementsByClassName("listView")[0];;
+    formToClose2.style.display = "none";
+    formToClose2.classList.remove("active");
+
     form.style.display = "flex";
     requestAnimationFrame(() => {
       form.classList.add("active");
@@ -45,6 +49,10 @@ document
     formToClose.style.display = "none";
     formToClose.classList.remove("active");
 
+    const formToClose2 = document.getElementsByClassName("listView")[0];;
+    formToClose2.style.display = "none";
+    formToClose2.classList.remove("active");
+
     form.style.display = "flex";
     requestAnimationFrame(() => {
       form.classList.add("active");
@@ -53,10 +61,65 @@ document
 
 document
   .getElementById("close_display_album_tab")
-  .addEventListener("click", function () {
+  .addEventListener("click", function() {
     const form = document.getElementsByClassName("display-album")[0];
     form.classList.remove("active");
   });
+
+//list
+document.getElementById("open_list_view_tab").addEventListener("click", async function () {
+    const container = document.getElementsByClassName("listView")[0];
+
+    const albumCards = container.querySelectorAll(".album-card");
+    albumCards.forEach((card) => {
+      card.style.display = "none";
+    });
+
+    const formToClose = document.getElementsByClassName("add-album")[0];
+    formToClose.style.display = "none";
+    formToClose.classList.remove("active");
+
+    const formToClose2 = document.getElementsByClassName("display-album")[0];
+    formToClose2.style.display = "none";
+    formToClose2.classList.remove("active");
+
+    try {
+      const response = await fetch(`/albums`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const result = await response.json();
+      console.log("Server response:", result);
+
+      if (result == null || result.length === 0) {
+        alert("No data in database");
+        container.display="none"
+        return;
+      } else {
+        container.style.display = "flex";
+        requestAnimationFrame(() => {
+          container.classList.add("active");
+        });
+        
+        result.forEach((e) => {
+          displatAlbumInListView(e);
+        });
+      }
+    } catch (err) {
+      console.error("Error listing albums:", err);
+      alert("Error listing albums.");
+    }
+  });
+
+document
+  .getElementById("close_list_tab")
+  .addEventListener("click", function () {
+    const container = document.getElementsByClassName("listView")[0];
+    container.classList.remove("active");
+});
 
 // Add or update album
 document.getElementById("saveBtn").addEventListener("click", async function () {
@@ -208,6 +271,38 @@ function displayAlbum(album) {
   albumCard.appendChild(deleteBtn);
 
   albumDisplay.appendChild(albumCard);
+}
+
+function displatAlbumInListView(album){
+  const listView = document.querySelector(".listView");
+
+  const albumItem = document.createElement("div");
+  albumItem.classList.add("album-card");
+
+  const albumHeader = document.createElement("div");
+  albumHeader.classList.add("album-header");
+
+  const albumTitle = document.createElement("h3");
+  albumTitle.textContent = `${album.singer} - ${album.title}`;
+
+  const albumYear = document.createElement("span");
+  albumYear.textContent = `(${album.release_year})`;
+
+  albumHeader.appendChild(albumTitle);
+  albumHeader.appendChild(albumYear);
+
+  const albumInfo = document.createElement("div");
+  albumInfo.classList.add("album-info");
+
+  const albumSongs = document.createElement("p");
+  albumSongs.textContent = `Songs: ${album.song_amount}`;
+
+  albumInfo.appendChild(albumSongs);
+
+  albumItem.appendChild(albumHeader);
+  albumItem.appendChild(albumInfo);
+
+  listView.appendChild(albumItem);
 }
 
 function openEditForm(album) {

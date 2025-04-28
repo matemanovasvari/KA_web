@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    cursor: none;
     color: white;
     box-sizing: border-box;
 }
@@ -13,20 +12,6 @@ body{
     align-items: center;
     min-height: 100vh;
     background: url(../styles/ChatGPT\ Image\ 2025.\ ápr.\ 14.\ 18_26_18.png);
-}
-
-.cursor-dot{
-    width: 25px;
-    height: 25px;
-    background-color: whitesmoke;
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    z-index: 99;
-    pointer-events: none;
-    border: 3px solid grey;
 }
 
 img{
@@ -57,6 +42,7 @@ header{
     font-weight: 500;
     margin-left: 40px;
     transition: .5s;
+    cursor: pointer;
 }
 
 .menuBtn:hover{
@@ -213,6 +199,17 @@ button{
     border-radius: 0 25px 0 0;
 }
 
+#close_list_tab{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background-color: red;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 25px 0 0;
+}
+
 #save_btn_container{
     display: flex;
     align-items: center;
@@ -230,7 +227,7 @@ button{
 .album-card {
   border: 2px solid rgba(255, 255, 255, 0.6);
   padding: 20px;
-  margin-top: 10px;
+  margin: 10px;
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.2);
   width: 320px;
@@ -280,4 +277,22 @@ button{
 
 .delete-btn {
   background-color: #F44336;
+}
+
+.listView{
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    display: none;
+    align-items: center;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.listView.active{
+    display: flex;
+    transform: scale(1);
+    opacity: 1;
 }

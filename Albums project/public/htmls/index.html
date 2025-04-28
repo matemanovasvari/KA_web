@@ -7,13 +7,11 @@
     <title>Albums project</title>
 </head>
 <body>
-    <div class="cursor-dot" data-cursor-dot></div>
-
     <header>
         <img src="../styles/ChatGPT Image 2025. ápr. 14. 17_53_12.png" class="logo">
         <nav class="navigation">
             <button class="menuBtn" id="open_add_album_tab">Add album</button>
-            <button class="menuBtn">List albums</button>
+            <button class="menuBtn" id="open_list_view_tab">List albums</button>
             <button class="menuBtn" id="open_display_album">Display album</button>
         </nav>
     </header>
@@ -48,7 +46,7 @@
         <h2>Display album</h2>
         <form onsubmit="return false;">
             <div class="input-box-flex">
-                <label>Id of album to display</label> 
+                <label>Id of album to display</label>
                 <input type="number" min="1" id="albumId" placeholder="1" required>
             </div>
             <div id="save_btn_container">
@@ -58,6 +56,10 @@
         <br>
         <br>
         <div id="albumDisplay" class="album-display"></div>
+    </div>
+
+    <div class="listView">
+        <button id="close_list_tab">X</button>
     </div>
     <script src="../script.js"></script>
 </body>
