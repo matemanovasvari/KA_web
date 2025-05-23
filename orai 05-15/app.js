@@ -11,7 +11,7 @@ app.get('/users', (req, res) => {
         res.status(200).json(users);
     } catch(err){
         res.status(500).json({message: `${err}`})
-    }
+    }           
 });
 
 app.get('/users/:id', (req, res) => {
