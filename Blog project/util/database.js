@@ -3,7 +3,7 @@ import Database from "better-sqlite3";
 const db = new Database("./data/database.sqlite");
 
 db.prepare(`CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT UNIQUE, username TEXT UNIQUE, password TEXT UNIQUE)`).run();
-db.prepare(`CREATE TABLE IF NOT EXISTS blogs (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, title TEXT, category TEXT, content TEXT, date DATE, modifyDate DATE, FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE )`).run();
+db.prepare(`CREATE TABLE IF NOT EXISTS blogs (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, author TEXT, title TEXT, category TEXT, content TEXT, date TEXT, modifyDate TEXT, FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE )`).run();
 
 export const getUsers = () => db.prepare("SELECT * FROM users").all();
 
@@ -17,11 +17,11 @@ export const deleteUser = (id) => db.prepare("DELETE FROM users WHERE id =?").ru
 
 export const getBlogs = () => db.prepare("SELECT * FROM blogs").all();
 
-export const getBlog = (id) => db.prepare("SELECT * FROM users WHERE id = ?").get(id);
+export const getBlog = (id) => db.prepare("SELECT * FROM blogs WHERE id = ?").get(id);
 
-export const saveBlog = (userId, title, category, content, date, modifyDate) =>
-    db.prepare("INSERT INTO blogs (userId, title, category, content, date, modifyDate) VALUES (?,?,?,?,?,?)")
-      .run(userId, title, category, content, date, modifyDate);
+export const saveBlog = (userId, author, title, category, content, date, modifyDate) =>
+    db.prepare("INSERT INTO blogs (userId, author, title, category, content, date, modifyDate) VALUES (?,?,?,?,?,?,?)")
+      .run(userId, author, title, category, content, date, modifyDate);
 
 export const updateBlog = (id, userId, title, category, content, date, modifyDate) => 
     db.prepare("UPDATE blogs SET userId = ?, title = ?, category = ?, content = ?, date = ?, modifyDate = ? WHERE id = ?")

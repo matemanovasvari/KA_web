@@ -7,6 +7,7 @@ import * as db from "./util/database.js";
 const PORT = 3000;
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -63,6 +64,80 @@ app.post('/users', (req, res) => {
         return res.status(409).json({ message: "A unique constraint was violated." });
       }
       res.status(500).json({ message: "Internal server error." });
+    }
+});
+
+app.get("/blogs", (req, res) => {
+  try {
+    const blogs = db.getBlogs();
+    res.status(200).json(blogs);
+  } catch (err) {
+    res.status(500).json({ message: `${err}` });
+  }
+});
+
+app.get("/blogs/:id", (req, res) => {
+  try {
+    const blog = db.getBlog(req.params.id);
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found!" });
+    }
+    res.status(200).json(blog);
+  } catch (err) {
+    res.status(500).json({ message: `${err}` });
+  }
+});
+
+app.post("/blogs", (req, res) => {
+  try {
+    const { userId, author, title, category, content, date, modifyDate } = req.body;
+    if (!title || !category || !content) {
+      return res.status(400).json({ message: "Invalid inputs!" });
+    }
+    const savedBlog = db.saveBlog(userId, author, title, category, content, date, modifyDate);
+    if (savedBlog.changes != 1) {
+      return res.status(501).json({ message: "Blog save failed!" });
+    }
+    res.status(201).json({ id: savedBlog.lastInsertRowid, userId, author, title, category, content, date, modifyDate });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err });
+  }
+});
+
+app.put("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  try {
+    const updatedBlog = db.updateBlog(id);
+    
+    if (updatedBlog.changes != 1) {
+      return res.status(501).json({ message: "Blog update failed!" });
+    }
+    res.status(201).json({
+      id: updatedBlog.lastInsertRowid,
+      userId,
+      author,
+      title,
+      category,
+      content,
+      date,
+      modifyDate
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err });
+  }
+});
+
+app.delete('/blogs/:id', (req, res) => {
+    try {
+        const deletedBlog = db.deleteBlog(req.params.id);
+        if (deletedBlog.changes != 1) {
+          return res.status(501).json({ message: "Blog delete failed!" });
+        }
+        res.status(200).json({message: 'Delete successful!'});
+    } catch (err) {
+        res.status(500).json({message: `${err}`});
     }
 });
 
