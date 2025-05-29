@@ -14,7 +14,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function updateUIForLoggedInUser(user) {
-  document.getElementById("exploreBtn").disabled = false;
   document.getElementById("postBtn").disabled = false;
   document.getElementById("manageBtn").disabled = false;
   document.getElementById("logoutBtn").style.display = "inline-block";
@@ -26,7 +25,6 @@ function updateUIForLoggedInUser(user) {
 
 
 if(isUserLoggedIn == false){
-  document.getElementById("exploreBtn").disabled = true;
   document.getElementById("postBtn").disabled = true;
   document.getElementById("manageBtn").disabled = true;
   document.getElementById("logoutBtn").style.display = "none";
@@ -136,12 +134,11 @@ document.getElementById("login-form")
 });
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
+  alert(`Come back soon!`);
   localStorage.removeItem("loggedInUser");
-  document.getElementById("exploreBtn").disabled = true;
   document.getElementById("postBtn").disabled = true;
   document.getElementById("manageBtn").disabled = true;
   document.getElementById("logoutBtn").style.display = "none";
   document.getElementById("openLoginBtn").style.display = "inline-block";
   document.getElementById("welcome").classList.remove("closed");
-  alert(`Come back soon, ${user.username}!`);
 });
