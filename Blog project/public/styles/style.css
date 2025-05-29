@@ -239,3 +239,60 @@ h2{
     font-weight: 500;
     margin: 0;
 }
+
+#logoutBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-box{
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.post-box.active {
+    display: flex;
+    transform: scale(1);
+    opacity: 1;
+}
+
+#close_post{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 0;
+    right: 0;
+    top: 0;
+    background-color: red;
+    position: absolute;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#postButton{
+    width: 100%;
+    background: #fff;
+    color: black;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 0;
+}
