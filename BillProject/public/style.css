@@ -9,12 +9,14 @@ body {
     background-color: #f4f4f4;
     padding: 1rem;
     color: #333;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #004d7a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url(./bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 ul {
@@ -22,17 +24,19 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
     gap: 0.75rem;
     margin-bottom: 2rem;
 }
 
 ul li {
-    background-color: #0077b6;
+    background-color: green;
     color: white;
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-align: center;
 }
 
 ul li:hover {
@@ -41,12 +45,13 @@ ul li:hover {
 
 #content {
     max-width: 900px;
-    margin: 0 auto;
+    margin-left: 35px;
     padding: 1rem;
     background: white;
     border-radius: 8px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
     display: none;
+    width: 500px;
 }
 
 input[type="text"],
